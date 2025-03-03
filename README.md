@@ -8,4 +8,4 @@ This project demonstrates a comprehensive data data warehousing solution, from b
 ## Project Overview 
 
 In this project, I have: 
--abc
+- abc
