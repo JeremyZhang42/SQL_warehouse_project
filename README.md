@@ -8,4 +8,7 @@ This project demonstrates a comprehensive data data warehousing solution, from b
 ## Project Overview 
 
 In this project, I have: 
-- abc
+- Designed a data warehouse: implemented a schema optimized for analytics.
+- Built ETL process: Extracted, transformed, and loaded data into the warehouse for reliable reporting.
+
+This repository includes the scripts and documentation used to create the data warehouse. 
