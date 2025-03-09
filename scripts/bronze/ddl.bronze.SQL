@@ -1,65 +1,21 @@
-create database DataWarehouse; 
-use Datawarehouse; 
-create schema bronze; 
-create schema silver; 
-create schema gold; 
+/*
+===============================================================================
+Stored Procedure: Load Bronze Layer (Source -> Bronze)
+===============================================================================
+Script Purpose:
+    This stored procedure loads data into the 'bronze' schema from external CSV files. 
+    It performs the following actions:
+    - Truncates the bronze tables before loading data.
+    - Uses the `BULK INSERT` command to load data from csv Files to bronze tables.
 
--- DDL for Tables --
-DROP TABLE IF EXISTS bronze.crm_cust_info;
-CREATE TABLE bronze.crm_cust_info(
-	cst_id INT,
-	cst_key NVARCHAR (50),
-	cst_firstname NVARCHAR (50) ,
-	cst_lastname NVARCHAR (50) ,
-	cst_material_status NVARCHAR (50) ,
-	cst_gndr NVARCHAR (50) ,
-	cst_create_date DATE);
+Parameters:
+    None. 
+	  This stored procedure does not accept any parameters or return any values.
 
-DROP TABLE IF EXISTS bronze.crm_prd_info;
-CREATE TABLE bronze.crm_prd_info (
-	pra_id INT,
-	prd_key NVARCHAR ( 50) ,
-	prd_nm NVARCHAR (50) ,
-	prd_cost INT,
-	prd_line NVARCHAR (50) ,
-	prd_start_dt DATETIME,
-	prd_end_dt DATETIME
-) ;
-
-DROP TABLE IF EXISTS bronze.crm_sales_details;
-CREATE TABLE bronze.crm_sales_details (
-	s1s_ord_num NVARCHAR (50) ,
-	s1s_pra_key NVARCHAR (50) ,
-	s1s_cust_id INT,
-	s1s_order_dt INT,
-	s1s_ship_dt INT,
-	s1s_due_dt INT,
-	s1s_sales INT,
-	sls_quantity INT,
-	sls_price INT
-);
-
-DROP TABLE IF EXISTS bronze.erp_loc_a101;
-CREATE TABLE bronze. erp_loc_a101 (
-	cid NVARCHAR (50),
-	cntry NVARCHAR (50)
-);
-
-DROP TABLE IF EXISTS bronze.erp_cust_az12;
-CREATE TABLE bronze. erp_cust_az12 (
-	cid NVARCHAR (50) ,
-	bdate DATE,
-	gen NVARCHAR (50)
-);
-
-DROP TABLE IF EXISTS bronze.erp_px_cat_g1v2;
-CREATE TABLE bronze. erp_px_cat_g1v2 (
-	id NVARCHAR ( 50),
-	cat NVARCHAR ( 50) ,
-	subcat NVARCHAR ( 50) ,
-	maintenance NVARCHAR (50)
-);
-
+Usage Example:
+    EXEC bronze.load_bronze;
+===============================================================================
+*/
 
 -- Data Load Scripts --
 	
@@ -70,7 +26,17 @@ CREATE TABLE bronze. erp_px_cat_g1v2 (
 	FIELDS TERMINATED BY ','
 	ENCLOSED BY '"'
 	LINES TERMINATED BY '\n'
-	IGNORE 1 LINES;
+	IGNORE 1 LINES
+    (
+    cst_id,
+    cst_key,
+    cst_firstname,
+    cst_lastname,
+    cst_marital_status,
+    cst_gndr,
+    @cst_create_date
+)
+SET cst_create_date = STR_TO_DATE(@cst_create_date, '%d/%m/%y');
 
 
 	TRUNCATE TABLE bronze.crm_prd_info; 
@@ -81,6 +47,7 @@ CREATE TABLE bronze. erp_px_cat_g1v2 (
 	ENCLOSED BY '"'
 	LINES TERMINATED BY '\n'
 	IGNORE 1 LINES;
+
 
 
 	TRUNCATE TABLE bronze.crm_sales_details; 
@@ -101,6 +68,7 @@ CREATE TABLE bronze. erp_px_cat_g1v2 (
 	ENCLOSED BY '"'
 	LINES TERMINATED BY '\n'
 	IGNORE 1 LINES;
+
 
 
 	TRUNCATE TABLE bronze.erp_loc_a101; 
