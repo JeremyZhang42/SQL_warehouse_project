@@ -18,3 +18,5 @@ In this project, I have:
 - Built ETL process: Extracted, transformed, and loaded data into the warehouse for reliable reporting.
 - Modeled the data: developing fact and dimension tables optimized for analytical queries
 
+## Project Logistics 
+
