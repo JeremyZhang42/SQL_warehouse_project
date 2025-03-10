@@ -19,4 +19,7 @@ In this project, I have:
 - Modeled the data: developing fact and dimension tables optimized for analytical queries
 
 ## Project Logistics 
-
+- dataset: it contains all the datasets that i used for this project
+- docs: all the graphs that visualize the mechanisms of the project
+- scripts: all the SQL scripts that i wrote to achieve the ETL process
+- test: the SQL scripts that double-checks the quality of each layer of the data warehouse
