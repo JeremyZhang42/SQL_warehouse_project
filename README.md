@@ -1,4 +1,4 @@
-# SQL Datawarehouse and Analytics Project
+# SQL Datawarehouse Project
 
 Welcome to my first SQL warehouse project. This is my first project on my way of pursuing a career in data/business analyst. 
 
@@ -17,11 +17,4 @@ In this project, I have:
 - Designed a data warehouse: implemented a schema optimized for analytics.
 - Built ETL process: Extracted, transformed, and loaded data into the warehouse for reliable reporting.
 - Modeled the data: developing fact and dimension tables optimized for analytical queries
-- Analyzed the data: Creating SQL-based reports and dashboards for actionable insights
 
-## BI: Analytics & Reporting(Data Analysis) 
-**Objective**
-Develop SQL-based analytics to deliver detailed insights into: 
-- Customer Behavior
-- Product Performance
-- Sales Trends
